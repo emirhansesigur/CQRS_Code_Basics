@@ -1,6 +1,7 @@
 ﻿using Application.Users.Commands.CreateUser;
 using Application.Users.Commands.DeleteUser;
 using Application.Users.Commands.UpdateUser;
+using Application.Users.Queries.GetUser;
 using Application.Users.Queries.GetUsers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,8 +29,14 @@ public class UsersController : ApiControllerBase
         var data = await Mediator.Send(new GetUsersQuery());
         return Ok(data);
     }
+    [HttpGet("{id}")]
+    public async Task<ActionResult> GetUser(Guid id)
+    {
+        var data = await Mediator.Send(new GetUserQuery { Id = id });
+        return Ok(data);
+    }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteUser(Guid id)
     {
         await Mediator.Send(new DeleteUserCommand { Id = id });
