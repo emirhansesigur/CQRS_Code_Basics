@@ -22,6 +22,7 @@ The project follows a modular monolith approach with separate layers for command
 |   |   |   |-- Update
 |   |   |-- Models
 |   |   |-- Queries (Read Operations)
+|   |   |   |-- Read
 |   |-- DependencyInjection.cs
 |-- Domain
 |   |-- Entities
