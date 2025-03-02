@@ -17,7 +17,12 @@ public class GetUsersQueryHandler(ApplicationDbContext context) : IRequestHandle
             Id = u.Id,
             Name = u.Name,
             Surname = u.Surname,
-            UserName = u.Name
+            UserName = u.Name,
+            UserProfile =  new UserProfileRequestModel
+            {
+                Address = u.UserProfile.Address,
+                PhoneNumber = u.UserProfile.PhoneNumber
+            }
         }).ToListAsync(cancellationToken);
 
         return users;

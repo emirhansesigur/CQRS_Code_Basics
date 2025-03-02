@@ -17,7 +17,12 @@ public class GetUserQueryHandler(ApplicationDbContext context) : IRequestHandler
             Id = u.Id,
             Name = u.Name,
             Surname = u.Surname,
-            UserName = u.Name
+            UserName = u.Name,
+            UserProfile =  new UserProfileRequestModel
+            {
+                Address = u.UserProfile.Address,
+                PhoneNumber = u.UserProfile.PhoneNumber
+            }
         }).FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken: cancellationToken) ?? throw new KeyNotFoundException($"User with Id {request.Id} not found.");
 
         return user;

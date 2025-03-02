@@ -17,6 +17,11 @@ public class CreateUserCommandHandler(ApplicationDbContext context) : IRequestHa
             UserName = request.UserName,
             Name = request.Name,
             Surname = request.Surname,
+            UserProfile = new UserProfile
+            {
+                Address = request.UserProfile.Address,
+                PhoneNumber = request.UserProfile.PhoneNumber
+            }   
         };
 
         await context.Users.AddAsync(entity);
